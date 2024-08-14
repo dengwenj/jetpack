@@ -2,9 +2,10 @@ package vip.dengwj.myjetpack.musicList
 
 import android.util.Log
 import vip.dengwj.myjetpack.lifecycle.ILifecycle
+import vip.dengwj.myjetpack.lifecycle.ILifecycleOwner
 import vip.dengwj.myjetpack.musicList.domain.Music
 
-class MusicPresenter : ILifecycle {
+class MusicPresenter(owner: ILifecycleOwner) : ILifecycle {
     enum class GetMusicState {
         LOADING, EMPTY, SUCCESS, ERROR
     }
@@ -14,6 +15,10 @@ class MusicPresenter : ILifecycle {
 
     private val musicModel by lazy {
         MusicModel()
+    }
+
+    init {
+        owner.getLifecycleProvider().addLifeListener(this)
     }
 
     fun getMusic() {

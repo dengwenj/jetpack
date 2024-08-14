@@ -2,10 +2,11 @@ package vip.dengwj.myjetpack.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import vip.dengwj.myjetpack.lifecycle.ILifecycleOwner
 import vip.dengwj.myjetpack.lifecycle.LifeState
 import vip.dengwj.myjetpack.lifecycle.LifecycleProvider
 
-open class BaseActivity : AppCompatActivity() {
+open class BaseActivity : AppCompatActivity(), ILifecycleOwner {
     val lifecycleProvider by lazy {
         LifecycleProvider()
     }
@@ -38,5 +39,9 @@ open class BaseActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         lifecycleProvider.makeLifeState(LifeState.DESTROY)
+    }
+
+    override fun getLifecycleProvider(): LifecycleProvider {
+        return lifecycleProvider
     }
 }

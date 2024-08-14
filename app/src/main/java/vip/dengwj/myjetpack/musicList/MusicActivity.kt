@@ -18,14 +18,10 @@ import vip.dengwj.myjetpack.base.BaseActivity
  */
 class MusicActivity : BaseActivity() {
     // 注册 presenter
-    private val musicPresenter = MusicPresenter()
+    private val musicPresenter = MusicPresenter(this)
 
     private val sizeText by lazy {
         findViewById<TextView>(R.id.size)
-    }
-
-    init {
-        lifecycleProvider.addLifeListener(musicPresenter)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

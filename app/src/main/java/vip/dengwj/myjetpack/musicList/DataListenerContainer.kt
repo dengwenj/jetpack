@@ -18,12 +18,12 @@ class DataListenerContainer<T> {
             // 如果是，则直接执行，否则切换到主线程，UI 更新必须在主线程
             if (Looper.getMainLooper().thread === Thread.currentThread()) {
                 blocks.forEach {
-                    if (value != null) it.invoke(value)
+                    it.invoke(value!!)
                 }
             } else {
                 App.handler.post {
                     blocks.forEach {
-                        if (value != null) it.invoke(value)
+                        it.invoke(value!!)
                     }
                 }
             }

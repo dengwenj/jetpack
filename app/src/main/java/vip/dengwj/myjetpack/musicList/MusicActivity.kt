@@ -7,6 +7,15 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import vip.dengwj.myjetpack.R
 
+/**
+ * Activity 生命周期：
+ * onCreate - 创建 -- 还不可见
+ * onStart - 可见 -- 还不可以交互
+ * onResume - 可见 -- 可以交互
+ * onPause - 可见 -- 不可以交互
+ * onStop - 不可见 -- 不可以交互
+ * onDestroy - 销毁 -- 不可见
+ */
 class MusicActivity : AppCompatActivity() {
     // 注册 presenter
     private val musicPresenter = MusicPresenter()
@@ -21,6 +30,32 @@ class MusicActivity : AppCompatActivity() {
 
         initDataListener()
         initViewListener()
+        musicPresenter.onCreate()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        musicPresenter.onStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        musicPresenter.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        musicPresenter.onPause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        musicPresenter.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        musicPresenter.onDestroy()
     }
 
     private fun initDataListener() {

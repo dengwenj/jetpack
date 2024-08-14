@@ -1,8 +1,9 @@
 package vip.dengwj.myjetpack.musicList
 
+import vip.dengwj.myjetpack.lifecycle.ILifecycle
 import vip.dengwj.myjetpack.musicList.domain.Music
 
-class MusicPresenter {
+class MusicPresenter : ILifecycle {
     enum class GetMusicState {
         LOADING, EMPTY, SUCCESS, ERROR
     }
@@ -32,5 +33,29 @@ class MusicPresenter {
                 musicState.value = GetMusicState.ERROR
             }
         })
+    }
+
+    override fun onCreate() {
+
+    }
+
+    override fun onStart() {
+
+    }
+
+    override fun onResume() {
+
+    }
+
+    override fun onPause() {
+
+    }
+
+    override fun onStop() {
+
+    }
+
+    override fun onDestroy() {
+
     }
 }

@@ -3,9 +3,15 @@ package vip.dengwj.myjetpack.player
 /**
  * 应该要弄成单列的
  */
-class PlayerPresenter : IPlayerPresenter {
+class PlayerPresenter private constructor(): IPlayerPresenter {
     enum class PlayerState {
         NONE, PLAY, PAUSED
+    }
+
+    companion object {
+        val instance by lazy {
+            PlayerPresenter()
+        }
     }
 
     private var currentPlayerState = PlayerState.NONE

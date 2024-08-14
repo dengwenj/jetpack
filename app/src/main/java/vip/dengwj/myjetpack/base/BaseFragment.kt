@@ -1,11 +1,11 @@
 package vip.dengwj.myjetpack.base
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import vip.dengwj.myjetpack.lifecycle.LifeState
 import vip.dengwj.myjetpack.lifecycle.LifecycleProvider
 
-open class BaseActivity : AppCompatActivity() {
+open class BaseFragment : Fragment() {
     val lifecycleProvider by lazy {
         LifecycleProvider()
     }

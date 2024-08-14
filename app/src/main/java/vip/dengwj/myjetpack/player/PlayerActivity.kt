@@ -5,10 +5,10 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import vip.dengwj.myjetpack.R
+import vip.dengwj.myjetpack.base.BaseActivity
 
-class PlayerActivity : AppCompatActivity(), IPlayerCallback {
+class PlayerActivity : BaseActivity(), IPlayerCallback {
     companion object {
         private val PUMU = "pumu"
     }
@@ -35,6 +35,10 @@ class PlayerActivity : AppCompatActivity(), IPlayerCallback {
 
     private val playerPresenter by lazy {
         PlayerPresenter.instance
+    }
+
+    init {
+         lifecycleProvider.addLifeListener(playerPresenter)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

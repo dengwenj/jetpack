@@ -1,9 +1,12 @@
 package vip.dengwj.myjetpack.player
 
+import android.util.Log
+import vip.dengwj.myjetpack.lifecycle.ILifecycle
+
 /**
  * 应该要弄成单列的
  */
-class PlayerPresenter private constructor(): IPlayerPresenter {
+class PlayerPresenter private constructor(): IPlayerPresenter, ILifecycle {
     enum class PlayerState {
         NONE, PLAY, PAUSED
     }
@@ -79,5 +82,29 @@ class PlayerPresenter private constructor(): IPlayerPresenter {
      */
     fun unregisterCallback(callback: IPlayerCallback) {
         list.remove(callback)
+    }
+
+    override fun onCreate() {
+
+    }
+
+    override fun onStart() {
+        Log.d("pumu", "player onStart")
+    }
+
+    override fun onResume() {
+
+    }
+
+    override fun onPause() {
+
+    }
+
+    override fun onStop() {
+        Log.d("pumu", "player onStop")
+    }
+
+    override fun onDestroy() {
+
     }
 }

@@ -3,12 +3,17 @@ package vip.dengwj.myjetpack.musicList
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import vip.dengwj.myjetpack.R
 
 class MusicActivity : AppCompatActivity() {
     // 注册 presenter
     private val musicPresenter = MusicPresenter()
+
+    private val sizeText by lazy {
+        findViewById<TextView>(R.id.size)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +25,7 @@ class MusicActivity : AppCompatActivity() {
 
     private fun initDataListener() {
         musicPresenter.musicList.addListener {
-            Log.d("pumu", "data -> $it")
+            sizeText.text = "总 ${it.size} 条"
         }
 
         musicPresenter.musicState.addListener {

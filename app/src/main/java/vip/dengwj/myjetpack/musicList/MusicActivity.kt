@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import vip.dengwj.myjetpack.R
+import vip.dengwj.myjetpack.base.BaseActivity
 
 /**
  * Activity 生命周期：
@@ -16,12 +16,16 @@ import vip.dengwj.myjetpack.R
  * onStop - 不可见 -- 不可以交互
  * onDestroy - 销毁 -- 不可见
  */
-class MusicActivity : AppCompatActivity() {
+class MusicActivity : BaseActivity() {
     // 注册 presenter
     private val musicPresenter = MusicPresenter()
 
     private val sizeText by lazy {
         findViewById<TextView>(R.id.size)
+    }
+
+    init {
+        addLifeListener(musicPresenter)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,32 +34,6 @@ class MusicActivity : AppCompatActivity() {
 
         initDataListener()
         initViewListener()
-        musicPresenter.onCreate()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        musicPresenter.onStart()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        musicPresenter.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        musicPresenter.onPause()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        musicPresenter.onStop()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        musicPresenter.onDestroy()
     }
 
     private fun initDataListener() {

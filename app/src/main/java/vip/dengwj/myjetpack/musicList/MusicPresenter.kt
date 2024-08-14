@@ -1,5 +1,6 @@
 package vip.dengwj.myjetpack.musicList
 
+import android.util.Log
 import vip.dengwj.myjetpack.lifecycle.ILifecycle
 import vip.dengwj.myjetpack.musicList.domain.Music
 
@@ -40,7 +41,7 @@ class MusicPresenter : ILifecycle {
     }
 
     override fun onStart() {
-
+        Log.d("pumu", "onStart")
     }
 
     override fun onResume() {
@@ -52,7 +53,7 @@ class MusicPresenter : ILifecycle {
     }
 
     override fun onStop() {
-
+        Log.d("pumu", "onStop")
     }
 
     override fun onDestroy() {

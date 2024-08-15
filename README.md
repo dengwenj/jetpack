@@ -1,5 +1,6 @@
 ### Jetpack
 * jetpack 是个组件库，帮助我们更好的实现 mvvm 架构
+* 里面有各种各样写好的功能
 
 ### MVC
 * View：Acitivity(View)、Fragment(View)视图，在android里xml布局转成View后，加载到了Activity/Fragment里了。
@@ -25,3 +26,7 @@
 ### ViewModel
 * 中间，就是个逻辑类，和 presenter 层差不多，View 依赖与 ViewModel 的数据，ViewModel 依赖 Model
 * ViewModel 类的主要优势实际上有两个方面：1、它允许您持久保留界面状态。 2、它可以提供对业务逻辑的访问权限。
+
+### jetpack 与 mvvm
+* ViewModel：对象为特定的界面组件（如 Fragment 或 Activity）提供数据，并包含数据处理业务逻辑，以及与 model 进行通信
+* LiveData：是中可观察的数据存储器。应用中的其他组件可以使用此存储器监控对象的更改

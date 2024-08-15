@@ -21,6 +21,8 @@ class PlayerPresenter private constructor(): IPlayerPresenter, ILifecycle {
 
     private val list = arrayListOf<IPlayerCallback>()
 
+    val liveDataState = LiveDataState.instance
+
     /**
      * 播放暂停
      */
@@ -31,12 +33,12 @@ class PlayerPresenter private constructor(): IPlayerPresenter, ILifecycle {
                 if (currentPlayerState != PlayerState.PLAY) {
                     it.playered()
                     currentPlayerState = PlayerState.PLAY
-                    LiveDataState.instance.postValue(PlayerState.PLAY)
+                    liveDataState.postValue(PlayerState.PLAY)
                 } else {
                     // 暂停
                     it.paused()
                     currentPlayerState = PlayerState.PAUSED
-                    LiveDataState.instance.postValue(PlayerState.PAUSED)
+                    liveDataState.postValue(PlayerState.PAUSED)
                 }
             }
         }

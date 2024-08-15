@@ -63,7 +63,7 @@ class PlayerActivity : BaseActivity(), IPlayerCallback {
     }
 
     private fun initDataListener() {
-        LiveDataState.instance.observeForever(foreverObserver)
+        playerPresenter.liveDataState.observeForever(foreverObserver)
     }
 
     private fun initPresenter() {
@@ -73,7 +73,7 @@ class PlayerActivity : BaseActivity(), IPlayerCallback {
     override fun onDestroy() {
         super.onDestroy()
         playerPresenter.unregisterCallback(this)
-        LiveDataState.instance.removeObserver(foreverObserver)
+        playerPresenter.liveDataState.removeObserver(foreverObserver)
     }
 
     private fun initListener() {

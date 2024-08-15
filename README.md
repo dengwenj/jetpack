@@ -18,4 +18,10 @@
 
 ### lifecycle 感知生命周期变化
 * 1、主动获取状态，通过 owner 获取到 lifecycle，里面有当前的状态
-* 2、通过 lifecycle 添加监听者，通过注解的方式，或者实现 LifecycleEventObserver 接口
+* 2、通过 lifecycle 添加监听者，通过注解的方式，或者实现 LifecycleEventObserver 接口 
+
+### LiveData
+
+### ViewModel
+* 中间，就是个逻辑类，和 presenter 层差不多，View 依赖与 ViewModel 的数据，ViewModel 依赖 Model
+* ViewModel 类的主要优势实际上有两个方面：1、它允许您持久保留界面状态。 2、它可以提供对业务逻辑的访问权限。

@@ -31,10 +31,12 @@ class PlayerPresenter private constructor(): IPlayerPresenter, ILifecycle {
                 if (currentPlayerState != PlayerState.PLAY) {
                     it.playered()
                     currentPlayerState = PlayerState.PLAY
+                    LiveDataState.instance.postValue(PlayerState.PLAY)
                 } else {
                     // 暂停
                     it.paused()
                     currentPlayerState = PlayerState.PAUSED
+                    LiveDataState.instance.postValue(PlayerState.PAUSED)
                 }
             }
         }

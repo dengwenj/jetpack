@@ -5,12 +5,17 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.Observer
 import vip.dengwj.myjetpack.R
 import vip.dengwj.myjetpack.base.BaseActivity
 
 class PlayerActivity : BaseActivity(), IPlayerCallback {
     companion object {
         private val PUMU = "pumu"
+    }
+
+    private val foreverObserver by lazy {
+        ForeverObserve()
     }
 
     private val title by lazy {
@@ -48,6 +53,17 @@ class PlayerActivity : BaseActivity(), IPlayerCallback {
         initPresenter()
 
         initListener()
+        initDataListener()
+    }
+
+    class ForeverObserve : Observer<PlayerPresenter.PlayerState> {
+        override fun onChanged(value: PlayerPresenter.PlayerState) {
+            Log.d("pumu", "value -> $value")
+        }
+    }
+
+    private fun initDataListener() {
+        LiveDataState.instance.observeForever(foreverObserver)
     }
 
     private fun initPresenter() {
@@ -57,6 +73,7 @@ class PlayerActivity : BaseActivity(), IPlayerCallback {
     override fun onDestroy() {
         super.onDestroy()
         playerPresenter.unregisterCallback(this)
+        LiveDataState.instance.removeObserver(foreverObserver)
     }
 
     private fun initListener() {

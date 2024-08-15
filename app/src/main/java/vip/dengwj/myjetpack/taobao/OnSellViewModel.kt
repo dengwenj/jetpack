@@ -3,6 +3,6 @@ package vip.dengwj.myjetpack.taobao
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class RecommendViewModel : ViewModel() {
-    private val recommendLiveData = MutableLiveData<List<String>>()
+class OnSellViewModel : ViewModel() {
+    private val onSellLiveData = MutableLiveData<List<String>>()
 }

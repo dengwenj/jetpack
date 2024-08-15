@@ -4,10 +4,10 @@ import vip.dengwj.myjetpack.base.BaseFragment
 
 class MusicDetailFragment : BaseFragment() {
     private val musicPresenter by lazy {
-        MusicPresenter()
+//        MusicPresenter()
     }
 
     init {
-        lifecycleProvider.addLifeListener(musicPresenter)
+//        lifecycleProvider.addLifeListener(musicPresenter)
     }
 }

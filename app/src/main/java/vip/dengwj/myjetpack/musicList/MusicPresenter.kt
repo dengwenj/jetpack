@@ -1,11 +1,14 @@
 package vip.dengwj.myjetpack.musicList
 
 import android.util.Log
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
 import vip.dengwj.myjetpack.lifecycle.ILifecycle
-import vip.dengwj.myjetpack.lifecycle.ILifecycleOwner
 import vip.dengwj.myjetpack.musicList.domain.Music
 
-class MusicPresenter(owner: ILifecycleOwner) : ILifecycle {
+// LifecycleOwner 官方的
+class MusicPresenter(owner: LifecycleOwner) : ILifecycle {
     enum class GetMusicState {
         LOADING, EMPTY, SUCCESS, ERROR
     }
@@ -17,8 +20,33 @@ class MusicPresenter(owner: ILifecycleOwner) : ILifecycle {
         MusicModel()
     }
 
+    private val viewLifeImpl by lazy {
+        ViewLifeImpl()
+    }
+
     init {
-        owner.getLifecycleProvider().addLifeListener(this)
+//        owner.getLifecycleProvider1().addLifeListener(this)
+        owner.lifecycle.addObserver(viewLifeImpl)
+    }
+
+    /**
+     * 被动通知 View 层的生命周期变化
+     */
+    inner class ViewLifeImpl : LifecycleEventObserver {
+        override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+            when (event)  {
+                Lifecycle.Event.ON_START -> {
+                    Log.d("pumu", "start哈哈哈")
+                }
+                Lifecycle.Event.ON_DESTROY -> {
+                    Log.d("pumu", "销毁了哈哈哈")
+                }
+                else -> {
+
+                }
+            }
+        }
+
     }
 
     fun getMusic() {

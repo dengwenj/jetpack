@@ -15,3 +15,5 @@
 
 ### UI 驱动开发，数据驱动开发(监听数据变化，数据变了更新 UI)
 ### 以前是 presenter 层控制 UI 层。现在 UI 层监听 presenter 数据
+
+### lifecycle 感知生命周期变化

@@ -3,11 +3,11 @@ package vip.dengwj.myjetpack.base
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import vip.dengwj.myjetpack.lifecycle.LifeState
-import vip.dengwj.myjetpack.lifecycle.LifecycleProvider
+import vip.dengwj.myjetpack.lifecycle.LifecycleProvider1
 
 open class BaseFragment : Fragment() {
     val lifecycleProvider by lazy {
-        LifecycleProvider()
+        LifecycleProvider1()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -4,7 +4,7 @@ package vip.dengwj.myjetpack.lifecycle
  * 管理所注册进来的接口，这个接口就 ILifecycle
  * 保存当前 View 的生命周期状态
  */
-class LifecycleProvider {
+class LifecycleProvider1 {
     private val lifeListenerList = arrayListOf<ILifecycle>()
 
     fun addLifeListener(listener: ILifecycle) {

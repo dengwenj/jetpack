@@ -6,6 +6,7 @@ import vip.dengwj.myjetpack.App
 /**
  * 数据容器
  * 可以监听数据的变化
+ * TODO 让数据容器也具备感知 View 生命周期变化的能力
  */
 class DataListenerContainer<T> {
     private val blocks = arrayListOf<(T) -> Unit>()

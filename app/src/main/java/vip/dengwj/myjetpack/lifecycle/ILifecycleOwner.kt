@@ -1,5 +1,5 @@
 package vip.dengwj.myjetpack.lifecycle
 
 interface ILifecycleOwner {
-    fun getLifecycleProvider(): LifecycleProvider
+    fun getLifecycleProvider1(): LifecycleProvider1
 }

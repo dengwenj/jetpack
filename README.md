@@ -17,3 +17,5 @@
 ### 以前是 presenter 层控制 UI 层。现在 UI 层监听 presenter 数据
 
 ### lifecycle 感知生命周期变化
+* 1、主动获取状态，通过 owner 获取到 lifecycle，里面有当前的状态
+* 2、通过 lifecycle 添加监听者，通过注解的方式，或者实现 LifecycleEventObserver 接口

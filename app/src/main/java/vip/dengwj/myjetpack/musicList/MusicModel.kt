@@ -8,6 +8,7 @@ class MusicModel {
             // 发送网络请求，获取到数据
             val list = arrayListOf<Music>()
             for (item in (page..size)) {
+                Thread.sleep(300)
                 list.add(
                     Music(
                         "歌名 -> $item",

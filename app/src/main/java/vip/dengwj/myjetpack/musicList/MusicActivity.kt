@@ -33,11 +33,11 @@ class MusicActivity : BaseActivity() {
     }
 
     private fun initDataListener() {
-        musicPresenter.musicList.addListener {
+        musicPresenter.musicList.addListener(this) {
             sizeText.text = "总 ${it.size} 条"
         }
 
-        musicPresenter.musicState.addListener {
+        musicPresenter.musicState.addListener(this) {
             Log.d("pumu", "状态 -> $it")
         }
     }

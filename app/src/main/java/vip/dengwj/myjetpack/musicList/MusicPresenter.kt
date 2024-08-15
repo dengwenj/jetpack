@@ -7,7 +7,7 @@ import androidx.lifecycle.LifecycleOwner
 import vip.dengwj.myjetpack.lifecycle.ILifecycle
 import vip.dengwj.myjetpack.musicList.domain.Music
 
-// LifecycleOwner 官方的
+// LifecycleOwner 官方的(传入 activity、fragment)
 class MusicPresenter(owner: LifecycleOwner) : ILifecycle {
     enum class GetMusicState {
         LOADING, EMPTY, SUCCESS, ERROR
@@ -31,6 +31,7 @@ class MusicPresenter(owner: LifecycleOwner) : ILifecycle {
 
     /**
      * 被动通知 View 层的生命周期变化
+     * 观察者
      */
     inner class ViewLifeImpl : LifecycleEventObserver {
         override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {

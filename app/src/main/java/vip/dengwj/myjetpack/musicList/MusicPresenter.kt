@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
 import vip.dengwj.myjetpack.lifecycle.ILifecycle
 import vip.dengwj.myjetpack.musicList.domain.Music
 
@@ -13,7 +14,8 @@ class MusicPresenter(owner: LifecycleOwner) : ILifecycle {
         LOADING, EMPTY, SUCCESS, ERROR
     }
 
-    val musicList = DataListenerContainer<List<Music>>()
+    val liveDataMusic = MutableLiveData<List<Music>>()
+//    val musicList = DataListenerContainer<List<Music>>()
     val musicState = DataListenerContainer<GetMusicState>()
 
     private val musicModel by lazy {
@@ -59,7 +61,8 @@ class MusicPresenter(owner: LifecycleOwner) : ILifecycle {
                 musicState.value = if (list.isEmpty()) {
                     GetMusicState.EMPTY
                 } else {
-                    musicList.value = list
+                    liveDataMusic.postValue(list)
+//                    musicList.value = list
                     GetMusicState.SUCCESS
                 }
             }

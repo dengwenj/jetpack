@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import androidx.lifecycle.Observer
 import vip.dengwj.myjetpack.R
 import vip.dengwj.myjetpack.base.BaseActivity
+import vip.dengwj.myjetpack.musicList.domain.Music
 
 /**
  * Activity 生命周期：
@@ -17,6 +19,8 @@ import vip.dengwj.myjetpack.base.BaseActivity
  * onDestroy - 销毁 -- 不可见
  */
 class MusicActivity : BaseActivity() {
+    private lateinit var foreverObserver: ForeverObserver
+
     // 注册 presenter
     private val musicPresenter = MusicPresenter(this)
 
@@ -32,10 +36,26 @@ class MusicActivity : BaseActivity() {
         initViewListener()
     }
 
-    private fun initDataListener() {
-        musicPresenter.liveDataMusic.observe(this) {
-            sizeText.text = "总 ${it.size} 条"
+    inner class ForeverObserver : Observer<List<Music>> {
+        override fun onChanged(value: List<Music>) {
+            Log.d("pumu", "ForeverObserver onChanged")
+            sizeText.text = "总 ${value.size} 条"
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        musicPresenter.liveDataMusic.removeObserver(foreverObserver)
+    }
+
+    private fun initDataListener() {
+        foreverObserver = ForeverObserver()
+
+        musicPresenter.liveDataMusic.observeForever(foreverObserver)
+//        musicPresenter.liveDataMusic.observe(this) {
+//            sizeText.text = "总 ${it.size} 条"
+//        }
+
 //        musicPresenter.musicList.addListener(this) {
 //            sizeText.text = "总 ${it.size} 条"
 //        }

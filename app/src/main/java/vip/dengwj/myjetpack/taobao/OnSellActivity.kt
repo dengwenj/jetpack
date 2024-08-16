@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter
+import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
 import vip.dengwj.myjetpack.R
 import vip.dengwj.myjetpack.adapter.OnSellListAdapter
 import vip.dengwj.myjetpack.base.LoadState
@@ -16,6 +18,10 @@ import vip.dengwj.myjetpack.base.LoadState
 class OnSellActivity : AppCompatActivity() {
     private val onSellViewModel by lazy {
         ViewModelProvider(this)[OnSellViewModel::class.java]
+    }
+
+    private val refreshView by lazy {
+        findViewById<TwinklingRefreshLayout>(R.id.refreshView)
     }
 
     private val recyclerView by lazy {
@@ -44,10 +50,17 @@ class OnSellActivity : AppCompatActivity() {
 
         initDataListener()
         initView()
-        //initViewModel()
     }
 
     private fun initView() {
+        // 刷新控件
+        refreshView.setEnableRefresh(false) // 下拉刷新禁止
+        refreshView.setOnRefreshListener(object : RefreshListenerAdapter() {
+            override fun onLoadMore(refreshLayout: TwinklingRefreshLayout?) {
+                onSellViewModel.loadMore()
+            }
+        })
+
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = onSellListAdapter
@@ -83,7 +96,7 @@ class OnSellActivity : AppCompatActivity() {
                         errorView.visibility = View.VISIBLE
                     }
                     LoadState.SUCCESS -> {
-                        recyclerView.visibility = View.VISIBLE
+                        refreshView.visibility = View.VISIBLE
                     }
                     LoadState.EMPTY -> {
                         emptyView.visibility = View.VISIBLE
@@ -101,7 +114,7 @@ class OnSellActivity : AppCompatActivity() {
      * 所有的隐藏
      */
     private fun hideAll() {
-        recyclerView.visibility = View.GONE
+        refreshView.visibility = View.GONE
         loadingView.visibility = View.GONE
         errorView.visibility = View.GONE
         emptyView.visibility = View.GONE

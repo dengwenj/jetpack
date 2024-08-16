@@ -27,8 +27,9 @@ class OnSellViewModel : ViewModel() {
      * 加载更多
      */
     fun loadMore() {
-        currentPage++
-        loadDataByPage(currentPage)
+        Log.d("pumu", "加载更多")
+        //currentPage++
+        //loadDataByPage(currentPage)
     }
 
     /**

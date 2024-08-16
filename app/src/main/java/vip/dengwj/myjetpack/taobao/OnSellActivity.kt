@@ -1,7 +1,6 @@
 package vip.dengwj.myjetpack.taobao
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -14,6 +13,7 @@ import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
 import vip.dengwj.myjetpack.R
 import vip.dengwj.myjetpack.adapter.OnSellListAdapter
 import vip.dengwj.myjetpack.base.LoadState
+import vip.dengwj.myjetpack.util.ToastUtils
 
 class OnSellActivity : AppCompatActivity() {
     private val onSellViewModel by lazy {
@@ -80,7 +80,13 @@ class OnSellActivity : AppCompatActivity() {
         //}
         onSellViewModel.apply {
             onSellLiveData.observe(this@OnSellActivity) {
-                onSellListAdapter.setData(it)
+                // 第一次加载
+                if (loadState.value != LoadState.SUCCESS_MORE) {
+                    onSellListAdapter.setData(it)
+                } else {
+                    // 加载更多成功
+                    onSellListAdapter.addData(it)
+                }
             }
         }.loadContent()
 
@@ -100,6 +106,27 @@ class OnSellActivity : AppCompatActivity() {
                     }
                     LoadState.EMPTY -> {
                         emptyView.visibility = View.VISIBLE
+                    }
+
+                    LoadState.LOADING_MORE -> {
+                        refreshView.visibility = View.VISIBLE
+                    }
+
+                    LoadState.SUCCESS_MORE -> {
+                        refreshView.visibility = View.VISIBLE
+                        refreshView.finishLoadmore()
+                        ToastUtils.showToast("加载成功")
+                    }
+
+                    LoadState.ERROR_MORE -> {
+                        refreshView.visibility = View.VISIBLE
+                        refreshView.finishLoadmore()
+                        ToastUtils.showToast("网络错误，请稍后重试")
+                    }
+                    LoadState.EMPTY_MORE -> {
+                        refreshView.visibility = View.VISIBLE
+                        refreshView.finishLoadmore()
+                        ToastUtils.showToast("暂无更多数据")
                     }
                 }
             }

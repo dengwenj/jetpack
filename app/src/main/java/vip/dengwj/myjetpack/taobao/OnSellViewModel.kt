@@ -17,6 +17,8 @@ class OnSellViewModel : ViewModel() {
         OnSellRepository()
     }
 
+    private var isMore = false
+
     companion object {
         const val DEFAULT_PAGE = 1
     }
@@ -27,34 +29,39 @@ class OnSellViewModel : ViewModel() {
      * 加载更多
      */
     fun loadMore() {
-        Log.d("pumu", "加载更多")
-        //currentPage++
-        //loadDataByPage(currentPage)
+        isMore = true
+        loadState.value = LoadState.LOADING_MORE
+        currentPage++
+        loadDataByPage(currentPage)
     }
 
     /**
      * 首次加载
      */
     fun loadContent() {
+        isMore = false
+        loadState.value = LoadState.LOADING
         loadDataByPage(currentPage)
     }
 
     private fun loadDataByPage(page: Int) {
-        // 加载中...
-        loadState.value = LoadState.LOADING
-
         viewModelScope.launch {
             try {
                 val res = onSellRepository.getData(page)
 
                 if (res.data.list.isEmpty()) {
-                    loadState.value = LoadState.EMPTY
+                    loadState.value = if (!isMore) LoadState.EMPTY else LoadState.EMPTY_MORE
                 } else {
                     onSellLiveData.postValue(res.data.list)
-                    loadState.value = LoadState.SUCCESS
+                    loadState.value = if (!isMore) LoadState.SUCCESS else LoadState.SUCCESS_MORE
                 }
             } catch (e: Exception) {
-                loadState.value = LoadState.ERROR
+                loadState.value = if (!isMore) {
+                    LoadState.ERROR
+                } else {
+                    currentPage--
+                    LoadState.ERROR_MORE
+                }
             }
         }
     }

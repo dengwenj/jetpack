@@ -33,6 +33,13 @@ class OnSellListAdapter : RecyclerView.Adapter<OnSellListAdapter.Holder>() {
         notifyDataSetChanged()
     }
 
+    fun addData(it: List<OnSellData.ListBean>?) {
+        val oldSize = data.size
+        data.addAll(it!!)
+        // 部分更新
+        notifyItemRangeChanged(oldSize, data.size)
+    }
+
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     }

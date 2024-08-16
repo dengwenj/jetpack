@@ -1,12 +1,17 @@
 package vip.dengwj.myjetpack.taobao
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import vip.dengwj.myjetpack.R
 import vip.dengwj.myjetpack.adapter.OnSellListAdapter
+import vip.dengwj.myjetpack.base.LoadState
 
 class OnSellActivity : AppCompatActivity() {
     private val onSellViewModel by lazy {
@@ -15,6 +20,18 @@ class OnSellActivity : AppCompatActivity() {
 
     private val recyclerView by lazy {
         findViewById<RecyclerView>(R.id.RecyclerView)
+    }
+
+    private val loadingView by lazy {
+        findViewById<LinearLayout>(R.id.loading)
+    }
+
+    private val errorView by lazy {
+        findViewById<LinearLayout>(R.id.error)
+    }
+
+    private val emptyView by lazy {
+        findViewById<LinearLayout>(R.id.empty)
     }
 
     private val onSellListAdapter by lazy {
@@ -34,8 +51,16 @@ class OnSellActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = onSellListAdapter
+
+        // 错误重新点击
+        findViewById<ImageView>(R.id.errorimg).setOnClickListener {
+            onSellViewModel.loadContent()
+        }
     }
 
+    /**
+     * 对数据进行监听
+     */
     private fun initDataListener() {
         //onSellViewModel.onSellLiveData.observe(this) {
         //    Log.d("pumu", "list -> ${it.size}")
@@ -45,9 +70,40 @@ class OnSellActivity : AppCompatActivity() {
                 onSellListAdapter.setData(it)
             }
         }.loadContent()
+
+        // 对状态数据进行监听
+        onSellViewModel.run {
+            loadState.observe(this@OnSellActivity) {
+                hideAll()
+                when (it) {
+                    LoadState.LOADING -> {
+                        loadingView.visibility = View.VISIBLE
+                    }
+                    LoadState.ERROR -> {
+                        errorView.visibility = View.VISIBLE
+                    }
+                    LoadState.SUCCESS -> {
+                        recyclerView.visibility = View.VISIBLE
+                    }
+                    LoadState.EMPTY -> {
+                        emptyView.visibility = View.VISIBLE
+                    }
+                }
+            }
+        }
     }
 
     //private fun initViewModel() {
     //    onSellViewModel.loadContent()
     //}
+
+    /**
+     * 所有的隐藏
+     */
+    private fun hideAll() {
+        recyclerView.visibility = View.GONE
+        loadingView.visibility = View.GONE
+        errorView.visibility = View.GONE
+        emptyView.visibility = View.GONE
+    }
 }

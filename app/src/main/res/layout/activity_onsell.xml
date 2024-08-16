@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <!--    加载中-->
+    <include
+        android:id="@+id/loading"
+        layout="@layout/loading" />
+
+    <!--    错误-->
+    <include
+        android:id="@+id/error"
+        layout="@layout/error"
+        android:visibility="gone" />
+
+    <!--空数据-->
+    <include
+        android:id="@+id/empty"
+        layout="@layout/empty"
+        android:visibility="gone" />
 </LinearLayout>

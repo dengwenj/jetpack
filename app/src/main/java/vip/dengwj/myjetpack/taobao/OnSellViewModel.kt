@@ -5,10 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import vip.dengwj.myjetpack.base.LoadState
 import vip.dengwj.myjetpack.domain.OnSellData
 
 class OnSellViewModel : ViewModel() {
     val onSellLiveData = MutableLiveData<List<OnSellData.ListBean>>()
+
+    val loadState = MutableLiveData<LoadState>()
 
     private val onSellRepository by lazy {
         OnSellRepository()
@@ -36,13 +39,21 @@ class OnSellViewModel : ViewModel() {
     }
 
     private fun loadDataByPage(page: Int) {
+        // 加载中...
+        loadState.value = LoadState.LOADING
+
         viewModelScope.launch {
             try {
                 val res = onSellRepository.getData(page)
-                onSellLiveData.postValue(res.data.list)
-                Log.d("pumu", "data -> " + res.data.list.size)
-            } catch (e: Exception) {
 
+                if (res.data.list.isEmpty()) {
+                    loadState.value = LoadState.EMPTY
+                } else {
+                    onSellLiveData.postValue(res.data.list)
+                    loadState.value = LoadState.SUCCESS
+                }
+            } catch (e: Exception) {
+                loadState.value = LoadState.ERROR
             }
         }
     }

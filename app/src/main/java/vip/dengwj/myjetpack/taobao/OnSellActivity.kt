@@ -17,6 +17,7 @@ import vip.dengwj.myjetpack.util.ToastUtils
 
 class OnSellActivity : AppCompatActivity() {
     private val onSellViewModel by lazy {
+        //OnSellViewModel()
         ViewModelProvider(this)[OnSellViewModel::class.java]
     }
 
@@ -72,7 +73,7 @@ class OnSellActivity : AppCompatActivity() {
     }
 
     /**
-     * 对数据进行监听
+     * 对数据进行监听更新 UI（数据驱动 UI）
      */
     private fun initDataListener() {
         //onSellViewModel.onSellLiveData.observe(this) {

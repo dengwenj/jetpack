@@ -47,6 +47,7 @@ class OnSellViewModel : ViewModel() {
     private fun loadDataByPage(page: Int) {
         viewModelScope.launch {
             try {
+                // 拿到数据
                 val res = onSellRepository.getData(page)
 
                 if (res.data.list.isEmpty()) {

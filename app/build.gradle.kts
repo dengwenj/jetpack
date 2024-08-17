@@ -56,4 +56,16 @@ dependencies {
 //    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
 
     implementation("com.lcodecorex:tkrefreshlayout:1.0.7")
+
+    val nav_version = "2.7.7"
+    // Kotlin
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    // Feature module Support
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
+
+    // Testing Navigation
+    androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
+
 }

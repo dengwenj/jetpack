@@ -20,5 +20,9 @@ class LoginFragment : BaseNavFragment() {
         view.findViewById<Button>(R.id.forget).setOnClickListener {
             findNavController().navigate(R.id.to_forget_fragment)
         }
+
+        view.findViewById<Button>(R.id.agreement).setOnClickListener {
+            findNavController().navigate(R.id.to_agreement_activity)
+        }
     }
 }

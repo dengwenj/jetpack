@@ -22,4 +22,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="跳转到找回密码"/>
+
+    <Button
+        android:id="@+id/agreement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="用户协议"/>
 </LinearLayout>

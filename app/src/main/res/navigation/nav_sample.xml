@@ -10,18 +10,28 @@
         <action
             android:id="@+id/to_forget_fragment"
             app:destination="@+id/forget_fragment" />
+
         <action
             android:id="@+id/to_register_fragment"
             app:destination="@+id/register_fragment" />
+
+        <action android:id="@+id/to_agreement_activity"
+            app:destination="@+id/agreement_activity"/>
     </fragment>
 
     <fragment
         android:id="@+id/forget_fragment"
         android:name="vip.dengwj.myjetpack.fragment.ForgetFragment">
+
     </fragment>
 
     <fragment
         android:id="@+id/register_fragment"
         android:name="vip.dengwj.myjetpack.fragment.RegisterFragment">
+
     </fragment>
+
+    <activity
+        android:id="@+id/agreement_activity"
+        android:name="vip.dengwj.myjetpack.navigation.AgreementActivity" />
 </navigation>

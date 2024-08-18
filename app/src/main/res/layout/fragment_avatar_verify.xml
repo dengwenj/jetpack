@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="注册" />
-
-    <Button
-        android:id="@+id/toAvatarVerify"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="头像验证"/>
 
     <Button
-        android:id="@+id/register_back"
+        android:id="@+id/toLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="返回"/>
+        android:text="验证成功，返回登录页"/>
 </LinearLayout>

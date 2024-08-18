@@ -16,5 +16,9 @@ class RegisterFragment : BaseNavFragment() {
             findNavController().navigateUp()
             //findNavController().popBackStack()
         }
+
+        view.findViewById<Button>(R.id.toAvatarVerify).setOnClickListener {
+            findNavController().navigate(R.id.to_avatar_verify)
+        }
     }
 }

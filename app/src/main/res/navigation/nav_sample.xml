@@ -4,6 +4,7 @@
     android:id="@+id/nav_sample"
     app:startDestination="@id/login_fragment">
 
+    <!--fragment 跳转到 fragment，fragment 跳转到 activity-->
     <fragment
         android:id="@+id/login_fragment"
         android:name="vip.dengwj.myjetpack.fragment.LoginFragment">
@@ -39,6 +40,24 @@
         android:id="@+id/register_fragment"
         android:name="vip.dengwj.myjetpack.fragment.RegisterFragment">
 
+        <action
+            android:id="@+id/to_avatar_verify"
+            app:destination="@+id/avatar_verify"
+            app:enterAnim="@anim/side_from_right_to_left_in"
+            app:exitAnim="@anim/side_from_right_to_left_out"
+            app:popEnterAnim="@anim/side_from_left_to_right_in"
+            app:popExitAnim="@anim/side_from_left_to_right_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/avatar_verify"
+        android:name="vip.dengwj.myjetpack.fragment.AvatarVerifyFragment">
+
+        <action
+            android:id="@+id/to_login"
+            app:destination="@id/login_fragment"
+            app:popUpTo="@id/login_fragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <activity

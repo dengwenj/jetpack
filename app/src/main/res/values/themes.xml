@@ -5,5 +5,18 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.Myjetpack" parent="Base.Theme.Myjetpack" />
+    <style name="Theme.Myjetpack" parent="Base.Theme.Myjetpack">
+        <!--<item name="android:windowAnimationStyle">@style/activityAnimation</item>-->
+    </style>
+
+    <style name="Theme.Myjetpack11" parent="Base.Theme.Myjetpack">
+        <item name="android:windowAnimationStyle">@style/activityAnimation</item>
+    </style>
+    
+    <style name="activityAnimation" parent="@android:style/Animation">
+        <item name="android:activityOpenEnterAnimation">@anim/side_from_right_to_left_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/side_from_right_to_left_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/side_from_left_to_right_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/side_from_left_to_right_out</item>
+    </style>
 </resources>

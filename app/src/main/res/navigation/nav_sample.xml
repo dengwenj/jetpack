@@ -9,7 +9,11 @@
         android:name="vip.dengwj.myjetpack.fragment.LoginFragment">
         <action
             android:id="@+id/to_forget_fragment"
-            app:destination="@+id/forget_fragment" />
+            app:destination="@+id/forget_fragment"
+            app:enterAnim="@anim/side_from_right_to_left_in"
+            app:exitAnim="@anim/side_from_right_to_left_out"
+            app:popEnterAnim="@anim/side_from_left_to_right_in"
+            app:popExitAnim="@anim/side_from_left_to_right_out" />
 
         <action
             android:id="@+id/to_register_fragment"
@@ -19,6 +23,7 @@
             app:popEnterAnim="@anim/side_from_left_to_right_in"
             app:popExitAnim="@anim/side_from_left_to_right_out" />
 
+        <!--全局设置了跳转动画-->
         <action
             android:id="@+id/to_agreement_activity"
             app:destination="@+id/agreement_activity" />

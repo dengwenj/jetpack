@@ -32,7 +32,12 @@ class LoginFragment : BaseNavFragment() {
         }
 
         view.findViewById<Button>(R.id.agreement).setOnClickListener {
-            findNavController().navigate(R.id.to_agreement_activity)
+            val bundle = Bundle()
+            bundle.putString(
+                "userName",
+                view.findViewById<EditText>(R.id.userName).text.toString()
+            )
+            findNavController().navigate(R.id.to_agreement_activity, bundle)
         }
     }
 }

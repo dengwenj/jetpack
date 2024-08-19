@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 /**
- * 公共设置 MVVM
+ * 设置公共的 MVVM
  */
 abstract class BaseVmFragment<T : ViewDataBinding, VM : ViewModel> : BaseViewFragment<T>() {
     lateinit var viewModel: VM
@@ -21,6 +21,12 @@ abstract class BaseVmFragment<T : ViewDataBinding, VM : ViewModel> : BaseViewFra
         observerData()
         // 设置相关的事件
         initEvent()
+        // 开始去加载数据
+        startLoadData()
+    }
+
+    open fun startLoadData() {
+
     }
 
     open fun initEvent() {

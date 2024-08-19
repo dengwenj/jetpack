@@ -1,6 +1,7 @@
 package vip.dengwj.myjetpack.base
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ abstract class BaseNavFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(getRootViewId(), container, false)
+        Log.d("pumu", "进了吗" + getRootViewId())
         // 初始化 View
         initView(view)
 

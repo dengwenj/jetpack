@@ -2,6 +2,7 @@ package vip.dengwj.myjetpack.fragment
 
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import androidx.navigation.fragment.findNavController
 import vip.dengwj.myjetpack.R
 import vip.dengwj.myjetpack.base.BaseNavFragment
@@ -20,5 +21,9 @@ class RegisterFragment : BaseNavFragment() {
         view.findViewById<Button>(R.id.toAvatarVerify).setOnClickListener {
             findNavController().navigate(R.id.to_avatar_verify)
         }
+
+        val args = arguments
+        val userName = args?.getString("userName")
+        view.findViewById<EditText>(R.id.registerUserName).setText(userName)
     }
 }

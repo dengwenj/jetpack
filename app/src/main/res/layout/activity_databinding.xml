@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data>
+        <import type="vip.dengwj.myjetpack.domain.User" />
         <variable
             name="user"
-            type="vip.dengwj.myjetpack.domain.User" />
+            type="User" />
+        <!--<variable-->
+        <!--    name="user"-->
+        <!--    type="vip.dengwj.myjetpack.domain.User" />-->
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

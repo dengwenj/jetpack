@@ -24,4 +24,8 @@ class OnSellFragment2 : BaseVmFragment<FragmentOnSell2Binding, OnSellViewModel2>
             Log.d("pumu", "contentList.size -> ${it.size}")
         }
     }
+
+    override fun startLoadData() {
+        viewModel.loadData()
+    }
 }

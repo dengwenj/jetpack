@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="._databinding.TemperatureActivity"
+        android:orientation="vertical">
+
+        <!--体温-->
+        <ViewStub
+            android:id="@+id/body"
+            android:layout="@layout/item_body_temperature"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!--    体温和环境温度-->
+        <ViewStub
+            android:id="@+id/bodyAndEnv"
+            android:layout="@layout/item_body_and_env_temperature"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    <!--    不支持-->
+        <ViewStub
+            android:id="@+id/notBodyAndEnv"
+            android:layout="@layout/item_not_support_temperature"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</layout>

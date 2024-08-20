@@ -5,9 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import vip.dengwj.myjetpack.databinding.ItemOnSell2Binding
+import vip.dengwj.myjetpack.domain.OnSellData
 
 class OnSellListAdapter2 : RecyclerView.Adapter<OnSellListAdapter2.Holder>() {
-    class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private val list = arrayListOf<OnSellData.ListBean>()
+
+    class Holder(itemView: View, val binding: ItemOnSell2Binding) : RecyclerView.ViewHolder(itemView) {
 
     }
 
@@ -17,14 +20,21 @@ class OnSellListAdapter2 : RecyclerView.Adapter<OnSellListAdapter2.Holder>() {
             parent,
             false
         )
-        return Holder(binding.root)
+        return Holder(binding.root, binding)
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-
+        // 绑定数据，需要得到 binding
+        holder.binding.itemData = list[position]
     }
 
     override fun getItemCount(): Int {
-        return 20
+        return list.size
+    }
+
+    fun setData(it: List<OnSellData.ListBean>) {
+        list.clear()
+        list.addAll(it)
+        notifyDataSetChanged()
     }
 }

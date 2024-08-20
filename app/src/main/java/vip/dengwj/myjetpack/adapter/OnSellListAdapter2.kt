@@ -27,9 +27,11 @@ class OnSellListAdapter2 : RecyclerView.Adapter<OnSellListAdapter2.Holder>() {
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         // 绑定数据，需要得到 binding
-        holder.binding.itemData = list[position]
+        val itemData = list[position]
+        holder.binding.itemData = itemData
         holder.binding.oldPrice.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
-        holder.binding.eventHandler = EventHandler()
+
+        holder.binding.eventHandler = EventHandler(itemData)
     }
 
     override fun getItemCount(): Int {
@@ -42,9 +44,18 @@ class OnSellListAdapter2 : RecyclerView.Adapter<OnSellListAdapter2.Holder>() {
         notifyDataSetChanged()
     }
 
-    inner class EventHandler {
+    inner class EventHandler(private val itemData: OnSellData.ListBean) {
         fun handleItemClick(itemView: View) {
-            Log.d("pumu", "itemView -> $itemView")
+            Log.d("pumu", "itemView -> $itemView title ${itemData.title}")
+        }
+
+        fun handleItemClick(itemView: View, title: String) {
+            Log.d("pumu", "title -> $title")
+        }
+
+        fun handleLongClick(title: String): Boolean {
+            Log.d("pumu", "title -> $title")
+            return true
         }
     }
 }

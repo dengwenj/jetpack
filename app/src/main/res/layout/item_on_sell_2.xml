@@ -17,7 +17,10 @@
         android:layout_height="wrap_content"
         android:background="#fff"
         android:layout_margin="2dp"
-        android:onClick="@{eventHandler::handleItemClick}">
+        android:onLongClick="@{() -> eventHandler.handleLongClick(itemData.title)}"
+        android:onClick="@{(v) -> eventHandler.handleItemClick(v, itemData.title)}">
+        <!--android:onClick="@{eventHandler::handleItemClick}"-->
+        <!--android:onClick="@{(v) -> eventHandler.handleItemClick(v, itemData.title)}"-->
 
         <ImageView
             android:layout_width="100dp"

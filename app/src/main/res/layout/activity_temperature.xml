@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
 
+        <variable
+            name="bodyVal"
+            type="Double" />
+
+        <variable
+            name="envVal"
+            type="Double" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -9,28 +17,31 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="._databinding.TemperatureActivity"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:context="._databinding.TemperatureActivity">
 
         <!--体温-->
         <ViewStub
             android:id="@+id/body"
-            android:layout="@layout/item_body_temperature"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout="@layout/item_body_temperature"
+            app:bodyValue="@{bodyVal}" />
 
         <!--    体温和环境温度-->
         <ViewStub
             android:id="@+id/bodyAndEnv"
-            android:layout="@layout/item_body_and_env_temperature"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout="@layout/item_body_and_env_temperature"
+            app:bodyValue="@{bodyVal}"
+            app:envValue="@{envVal}" />
 
-    <!--    不支持-->
+        <!--    不支持-->
         <ViewStub
             android:id="@+id/notBodyAndEnv"
-            android:layout="@layout/item_not_support_temperature"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout="@layout/item_not_support_temperature" />
     </LinearLayout>
 </layout>

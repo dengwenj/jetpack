@@ -42,5 +42,13 @@ class TemperatureActivity : AppCompatActivity() {
                 }
             }
         }
+
+        viewModel.bodyVal.observe(this) {
+            binding.bodyVal = it
+        }
+
+        viewModel.envVal.observe(this) {
+            binding.envVal = it
+        }
     }
 }

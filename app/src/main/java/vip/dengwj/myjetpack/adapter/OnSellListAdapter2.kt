@@ -14,17 +14,18 @@ import vip.dengwj.myjetpack.domain.OnSellData
 class OnSellListAdapter2 : RecyclerView.Adapter<OnSellListAdapter2.Holder>() {
     private val list = arrayListOf<OnSellData.ListBean>()
 
-    companion object {
-        @JvmStatic
-        @BindingAdapter("goodsImg")
-        fun setUpImg(iv: ImageView, goodsImg: String?) {
-            if (goodsImg != null) {
-                Glide.with(iv.context).load("https:$goodsImg").into(iv)
-            } else {
-                // 默认图片
-            }
-        }
-    }
+    // 可以独立出去
+    //companion object {
+    //    @JvmStatic
+    //    @BindingAdapter("goodsImg")
+    //    fun setUpImg(iv: ImageView, goodsImg: String?) {
+    //        if (goodsImg != null) {
+    //            Glide.with(iv.context).load("https:$goodsImg").into(iv)
+    //        } else {
+    //            // 默认图片
+    //        }
+    //    }
+    //}
 
     class Holder(itemView: View, val binding: ItemOnSell2Binding) : RecyclerView.ViewHolder(itemView) {
 

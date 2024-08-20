@@ -4,6 +4,10 @@
     <data>
 
         <variable
+            name="eventHandler"
+            type="vip.dengwj.myjetpack.adapter.OnSellListAdapter2.EventHandler" />
+
+        <variable
             name="itemData"
             type="vip.dengwj.myjetpack.domain.OnSellData.ListBean" />
     </data>
@@ -12,7 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff"
-        android:layout_margin="2dp">
+        android:layout_margin="2dp"
+        android:onClick="@{eventHandler::handleItemClick}">
 
         <ImageView
             android:layout_width="100dp"

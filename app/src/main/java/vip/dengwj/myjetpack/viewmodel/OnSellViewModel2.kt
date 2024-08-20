@@ -1,6 +1,5 @@
 package vip.dengwj.myjetpack.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -23,7 +22,7 @@ class OnSellViewModel2 : ViewModel() {
     }
 
     val contentList by lazy {
-        MutableLiveData<List<OnSellData>>()
+        MutableLiveData<List<OnSellData.ListBean>>()
     }
 
     private val repository by lazy {
@@ -34,13 +33,22 @@ class OnSellViewModel2 : ViewModel() {
         // loading
         loadState.value = LoadState.LOADING
 
-        loadPageData()
+        loadPageData(page)
     }
 
-    private fun loadPageData() {
+    private fun loadPageData(page1: Int) {
         viewModelScope.launch {
-            val res = repository.getOnSellByPage(page)
-            Log.d("pumu", "size -> ${res.data.list.size}")
+            try {
+                val res = repository.getOnSellByPage(page1)
+                if (res.data.list.isEmpty()) {
+                    loadState.value = LoadState.EMPTY
+                } else {
+                    contentList.postValue(res.data.list)
+                    loadState.value = LoadState.SUCCESS
+                }
+            } catch (e: Exception) {
+                loadState.value = LoadState.ERROR
+            }
         }
     }
 }

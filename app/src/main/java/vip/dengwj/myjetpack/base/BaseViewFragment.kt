@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 abstract class BaseViewFragment<T : ViewDataBinding> : Fragment() {
     var binding: T? = null
 
+    var rootView: View? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,8 +24,8 @@ abstract class BaseViewFragment<T : ViewDataBinding> : Fragment() {
 
         // 方式二
         binding = DataBindingUtil.inflate(inflater, getRootViewId(), container, false)
-
-        return binding!!.root
+        rootView = binding!!.root
+        return rootView
     }
 
     abstract fun getRootViewId(): Int

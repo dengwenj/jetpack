@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="itemData"
             type="vip.dengwj.myjetpack.domain.OnSellData.ListBean" />
@@ -8,18 +10,53 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:layout_margin="2dp">
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_margin="4dp"
             android:src="@drawable/ic_launcher_background"
-            android:layout_margin="4dp"/>
+            app:goodsImg="@{itemData.cover}"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="2"
-            android:text="@{itemData.title}"/>
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:text="@{itemData.title}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp">
+
+                <TextView
+                    android:id="@+id/oldPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ccc"
+                    android:text="@{@string/old_price(Float.valueOf(itemData.justPrice))}"
+                    android:layout_marginRight="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="#ff00"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/new_price(Float.valueOf(itemData.justPrice) - Float.valueOf(itemData.zkFinalPrice))}" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@{@string/goumai}" />
+        </LinearLayout>
     </LinearLayout>
 </layout>

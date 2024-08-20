@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">myjetpack</string>
+
+    <string name="old_price">原价:%.2f</string>
+    <string name="new_price">券后价:%.2f</string>
+    <string name="goumai">0·人已购买</string>
 </resources>

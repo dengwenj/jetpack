@@ -18,6 +18,9 @@ class StockViewModel : ViewModel() {
         data
     }
 
+    // 同意协议
+    val agreement = MutableLiveData<Boolean>()
+
     fun updateTotal() {
         var current = 0.00f
         if (currentSocket.value != null && currentSocket.value != "") {

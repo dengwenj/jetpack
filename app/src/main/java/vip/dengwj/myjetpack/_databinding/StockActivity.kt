@@ -38,11 +38,17 @@ class StockActivity : AppCompatActivity() {
         stockViewModel.socketCount.observe(this) {
             stockViewModel.updateTotal()
         }
+
+        // 同意协议
+        stockViewModel.agreement.observe(this) {
+            Log.d("pumu", "agreement -> $it")
+        }
     }
 
     // 数据变化去通知 UI 变化
     // 点击卖出
     fun handleClick(view: View) {
         stockViewModel.currentSocket.value = "22"
+        stockViewModel.agreement.value = true
     }
 }

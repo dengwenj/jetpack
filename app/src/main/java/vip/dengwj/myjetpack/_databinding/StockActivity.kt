@@ -27,15 +27,16 @@ class StockActivity : AppCompatActivity() {
 
         // UI 变化去通知数据变化
         binding.viewModel = stockViewModel
+        // 才会数据变化去通知 UI 变化
         binding.lifecycleOwner = this
         // 当前股价数据变动
         stockViewModel.currentSocket.observe(this) {
-            Log.d("pumu", "当前股价数据变动 -> $it")
+            stockViewModel.updateTotal()
         }
 
         // 数量数据变动
         stockViewModel.socketCount.observe(this) {
-            Log.d("pumu", "数量数据变动 -> $it")
+            stockViewModel.updateTotal()
         }
     }
 

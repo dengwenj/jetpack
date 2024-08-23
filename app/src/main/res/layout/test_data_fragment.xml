@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <!--把这个类引用进来-->
+        <import type="vip.dengwj.myjetpack.fragment.TestDataFragment" />
+
+        <variable
+            name="user"
+            type="vip.dengwj.myjetpack.domain.User" />
+
+        <!--这是个变量要赋值-->
+        <variable
+            name="testData"
+            type="vip.dengwj.myjetpack.fragment.TestDataFragment.HandlerEvent" />
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{user.name}"
+            android:onClick="@{(v) -> testData.handleClick(v)}"/>
+    </LinearLayout>
+</layout>
